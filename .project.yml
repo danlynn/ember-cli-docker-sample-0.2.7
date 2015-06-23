@@ -1,0 +1,43 @@
+# specify the .project.yml file format version and project type
+project:
+  version: 1.0.0
+  type: ember-cli
+
+# this is the preferred docker-machine instance to use for this project
+docker-machine:
+  name: dev3
+
+# this is used to determine if the container service is running
+docker-compose:
+  service: server
+
+# This list of commands will be proxied to run within the docker service
+# container.  These will be (re)created when 'project init' is ran.  They will
+# only be proxied while in the project directory tree.  After 'project init',
+# you must 'cd' into the project directory -or- execute 'cd .' to activate.
+proxied_commands:
+- npm
+- bower
+- ember
+
+# Define the browser and url to open after 'project start' command.
+# Note that '{{docker-machine ip}}' tag in 'url' will be dynamically replaced.
+browser:
+  path: /Applications/Google Chrome.app
+  url: http://{{docker-machine ip}}:4200/
+
+# If watchman is installed on your host OS and enabled below then the
+# 'project.rb rebuild' script will be ran to invoke a touch within the
+# container to trigger a rebuild of modified files by the container.
+# The 'directories' list identifies which directories will be watched
+# for file changes.
+watchman:
+  enabled: true
+  directories:
+  - app/*
+  - test/*
+#  triggers:
+#  - command: project rebuild
+#    directories:
+#    - app/*
+#    - test/*

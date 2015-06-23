@@ -1,0 +1,9 @@
+server:
+  image: danlynn/ember-cli:0.2.7
+  volumes:
+    - .:/myapp
+  command: server
+  # command: server --watcher polling
+  ports:
+    - "4200:4200"
+    - "35729:35729"
